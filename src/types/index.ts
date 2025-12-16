@@ -23,6 +23,8 @@ export interface IBuyer {
 
 export type TPayment = 'card' | 'cash' | '';
 
+export type TBuyerErrors = Partial<Record<keyof IBuyer, string>>;
+
 export interface IOrder extends IBuyer {
   items: string[];
   total: number;

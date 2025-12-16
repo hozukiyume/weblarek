@@ -1,4 +1,4 @@
-import {IBuyer, TPayment} from "../../types/index.ts";
+import {IBuyer, TPayment, TBuyerErrors} from "../../types/index.ts";
 
 export class Buyer {
   private payment: TPayment = '';
@@ -38,24 +38,8 @@ export class Buyer {
     this.address = ''
   }
 
-  validateStep1(): { payment?: string; address?: string } {
-    const errors: { payment?: string; address?: string } = {};
-    
-    if (!this.payment) errors.payment = 'Не выбран способ оплаты';
-    if (!this.address.trim()) errors.address = 'Введите адрес доставки';
-    return errors;
-  }
-
-  validateStep2(): { email?: string; phone?: string } {
-    const errors: { email?: string; phone?: string } = {};
-    
-    if (!this.email.trim()) errors.email = 'Введите email';
-    if (!this.phone.trim()) errors.phone = 'Введите телефон';
-    return errors;
-  }
-
-  validation(): { payment?: string; address?: string; email?: string; phone?: string } {
-    const errors: { payment?: string; address?: string; email?: string; phone?: string } = {};
+  validation(): TBuyerErrors {
+    const errors: TBuyerErrors = {};
     
     if (!this.payment) {
       errors.payment = 'Выберите способ оплаты';

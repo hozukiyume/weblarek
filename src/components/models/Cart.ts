@@ -12,8 +12,7 @@ export class Cart {
   }
 
   deleteItem(item: IProduct): void {
-    const deleteItem = item;
-    this.items = this.items.filter(item => item !== deleteItem);
+    this.items = this.items.filter(i => i.id !== item.id);
   }
 
   clear(): void {
